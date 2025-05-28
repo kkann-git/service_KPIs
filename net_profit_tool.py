@@ -32,6 +32,7 @@ elif manual:
     billable_hours = st.number_input("Total Billable Hours", min_value=0.0, step=1.0)
 else:
     st.info("Upload a CSV or check the box to enter data manually.")
+    st.info("CSV file must include columns: Revenue, Expenses, Billable Hours.")    
     st.stop()
 
 if billable_hours > 0:
