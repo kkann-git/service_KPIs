@@ -3,6 +3,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+col1, col2 = st.columns([1,3])
+
 st.set_page_config(page_title="Net Profit per Billable Hour", layout="centered")
 
 st.title("💰 Net Profit per Billable Hour Calculator")
@@ -40,7 +42,7 @@ if billable_hours > 0:
     net_profit_per_hour = net_profit / billable_hours
     effective_rate = revenue / billable_hours
 
-    col1, col2 = st.columns([1,3])
+    # col1, col2 = st.columns([1,3])
 
     col1.subheader("📊 Results")
     col1.metric("Net Profit", f"${net_profit:,.2f}")
