@@ -32,7 +32,7 @@ elif manual:
     billable_hours = st.number_input("Total Billable Hours", min_value=0.0, step=1.0)
 else:
     st.info("Upload a CSV or check the box to enter data manually. CSV file must include columns: Revenue, Expenses, Billable Hours.")
-    # st.info("CSV file must include columns: Revenue, Expenses, Billable Hours.")    
+    st.info("Entered data will only be stored in memory (RAM) only for the duration of the session and is deleted as soon as it is no longer needed—such as when the user uploads another file, clears the file uploader, or closes the browser tab. This data is not saved to disk or permanently stored in the app.")    
     st.stop()
 
 if billable_hours > 0:
