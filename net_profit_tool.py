@@ -40,7 +40,7 @@ if billable_hours > 0:
     net_profit_per_hour = net_profit / billable_hours
     effective_rate = revenue / billable_hours
 
-    col1, col2, col3 = st.columns([1,3,1])
+    col1, col2, col3 = st.columns([1,3,2])
 
     col1.subheader("📊 Results")
     col1.metric("Net Profit", f"${net_profit:,.2f}")
