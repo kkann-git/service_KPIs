@@ -2,6 +2,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import tempfile
+import os
 
 st.set_page_config(page_title="Net Profit per Billable Hour", layout="centered")
 
@@ -31,8 +33,7 @@ elif manual:
     expenses = st.number_input("Total Expenses", min_value=0.0, step=100.0)
     billable_hours = st.number_input("Total Billable Hours", min_value=0.0, step=1.0)
 else:
-    st.info("Upload a CSV or check the box to enter data manually. CSV file must include columns: Revenue, Expenses, Billable Hours.")
-    # st.info("CSV file must include columns: Revenue, Expenses, Billable Hours.")    
+    st.info("Upload a CSV or check the box to enter data manually.")
     st.stop()
 
 if billable_hours > 0:
@@ -54,5 +55,38 @@ if billable_hours > 0:
         title="Revenue vs Expenses vs Profit"
     )
     st.plotly_chart(fig, use_container_width=True)
+
+    # Excel Export
+    st.subheader("📊 Export to Excel")
+
+    export_data = pd.DataFrame({
+        "Metric": [
+            "Total Revenue",
+            "Total Expenses",
+            "Net Profit",
+            "Billable Hours",
+            "Net Profit per Billable Hour",
+            "Effective Hourly Rate (Revenue)"
+        ],
+        "Value": [
+            revenue,
+            expenses,
+            net_profit,
+            billable_hours,
+            net_profit_per_hour,
+            effective_rate
+        ]
+    })
+
+    excel_file_path = os.path.join(tempfile.gettempdir(), "net_profit_report.xlsx")
+    export_data.to_excel(excel_file_path, index=False)
+
+    with open(excel_file_path, "rb") as f:
+        st.download_button(
+            label="📥 Download Excel Report",
+            data=f,
+            file_name="net_profit_report.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
 else:
     st.warning("Billable hours must be greater than 0 to calculate profit per hour.")
