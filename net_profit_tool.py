@@ -58,11 +58,11 @@ if billable_hours > 0:
     col2.plotly_chart(fig, use_container_width=True)    
 
     # Reference Data Table
-    col3.markdown("While industry-specific data can vary, here are some general reference points from consulting, agency, and trade business benchmarks.")
-    
     ref_data = {'Industry': ['Freelance/Consulting', 'Marketing/Creative Agencies', 'Trades (Plumbing, HVAC)', 'Coaches/Consultants'], 
                 'Target Net Profit per Billable Hour': ['$75 – $150/hr', '$60 – $120/hr', '$50 – $100/hr', '$80 – $200/hr']}
     df_ref = pd.DataFrame(ref_data)
     col3.table(df_ref)
+
+    col3.markdown("PLEASE NOTE: While industry-specific data can vary, here are some general reference points from consulting, agency, and trade business benchmarks.")    
 else:
     st.warning("Billable hours must be greater than 0 to calculate profit per hour.")
