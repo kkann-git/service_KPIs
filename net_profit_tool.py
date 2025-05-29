@@ -61,7 +61,7 @@ if billable_hours > 0:
     col3.markdown("While industry-specific data can vary, here are some general reference points from consulting, agency, and trade business benchmarks.")
     
     ref_data = {'Industry': ['Freelance/Consulting', 'Marketing/Creative Agencies', 'Trades (Plumbing, HVAC)', 'Coaches/Consultants'], 
-                'Target Net Profit per Billable Hour': ['$75–$150/hr', '$60–$120/hr', '$50–$100/hr', '$80–$200/hr']}
+                'Target Net Profit per Billable Hour': ['$75 – $150/hr', '$60 – $120/hr', '$50 – $100/hr', '$80 – $200/hr']}
     df_ref = pd.DataFrame(ref_data)
     col3.table(df_ref.style.hide_index())
 else:
