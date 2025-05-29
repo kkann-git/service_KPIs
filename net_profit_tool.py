@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="Net Profit per Billable Hour", layout="centered")
+st.set_page_config(page_title="Net Profit per Billable Hour", layout="wide")
 
 st.title("💰 Net Profit per Billable Hour Calculator")
 
