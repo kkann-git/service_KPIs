@@ -63,6 +63,6 @@ if billable_hours > 0:
     ref_data = {'Industry': ['Freelance/Consulting', 'Marketing/Creative Agencies', 'Trades (Plumbing, HVAC)', 'Coaches/Consultants'], 
                 'Target Net Profit per Billable Hour': ['$75 – $150/hr', '$60 – $120/hr', '$50 – $100/hr', '$80 – $200/hr']}
     df_ref = pd.DataFrame(ref_data)
-    col3.table(df_ref.style.hide_index())
+    col3.table(df_ref)
 else:
     st.warning("Billable hours must be greater than 0 to calculate profit per hour.")
