@@ -32,7 +32,7 @@ elif manual:
     billable_hours = st.number_input("Total Billable Hours", min_value=0.0, step=1.0)
 else:
     st.info("Upload a CSV or check the box to enter data manually. CSV file must include columns: Revenue, Expenses, Billable Hours.")
-    st.info("Entered data will only be stored in memory (RAM) only for the duration of the session and is deleted as soon as it is no longer needed—such as when the user uploads another file, clears the file uploader, or closes the browser tab. This data is not saved to disk or permanently stored in the app.")    
+    st.info("Entered data will only be stored in memory (RAM) only for the duration of the session and is deleted as soon as it is no longer needed—such as when the user uploads another file, clears the file uploader, or closes the browser tab. This data is not saved to disk or permanently stored in this app.")    
     st.stop()
 
 if billable_hours > 0:
@@ -40,10 +40,16 @@ if billable_hours > 0:
     net_profit_per_hour = net_profit / billable_hours
     effective_rate = revenue / billable_hours
 
-    st.subheader("📊 Results")
-    st.metric("Net Profit", f"${net_profit:,.2f}")
-    st.metric("Net Profit per Billable Hour", f"${net_profit_per_hour:,.2f}")
-    st.metric("Effective Hourly Rate (Revenue)", f"${effective_rate:,.2f}")
+    col1, col2 = st.columns([1,3])
+
+    col1.subheader("📊 Results")
+    col1.metric("Net Profit", f"${net_profit:,.2f}")
+    col1.metric("Net Profit per Billable Hour", f"${net_profit_per_hour:,.2f}")
+    col1.metric("Effective Hourly Rate (Revenue)", f"${effective_rate:,.2f}")
+    # st.subheader("📊 Results")
+    # st.metric("Net Profit", f"${net_profit:,.2f}")
+    # st.metric("Net Profit per Billable Hour", f"${net_profit_per_hour:,.2f}")
+    # st.metric("Effective Hourly Rate (Revenue)", f"${effective_rate:,.2f}")
 
     # Plot
     fig = px.bar(
@@ -53,6 +59,7 @@ if billable_hours > 0:
         text_auto=".2s",
         title="Revenue vs Expenses vs Profit"
     )
-    st.plotly_chart(fig, use_container_width=True)
+    col2.plotly_chart(fig, use_container_width=True)
+    # st.plotly_chart(fig, use_container_width=True)
 else:
     st.warning("Billable hours must be greater than 0 to calculate profit per hour.")
