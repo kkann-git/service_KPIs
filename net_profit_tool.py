@@ -40,16 +40,12 @@ if billable_hours > 0:
     net_profit_per_hour = net_profit / billable_hours
     effective_rate = revenue / billable_hours
 
-    col1, col2 = st.columns([1,3])
+    col1, col2, col3 = st.columns([1,3,1])
 
     col1.subheader("📊 Results")
     col1.metric("Net Profit", f"${net_profit:,.2f}")
     col1.metric("Net Profit per Billable Hour", f"${net_profit_per_hour:,.2f}")
     col1.metric("Effective Hourly Rate (Revenue)", f"${effective_rate:,.2f}")
-    # st.subheader("📊 Results")
-    # st.metric("Net Profit", f"${net_profit:,.2f}")
-    # st.metric("Net Profit per Billable Hour", f"${net_profit_per_hour:,.2f}")
-    # st.metric("Effective Hourly Rate (Revenue)", f"${effective_rate:,.2f}")
 
     # Plot
     fig = px.bar(
@@ -59,7 +55,14 @@ if billable_hours > 0:
         text_auto=".2s",
         title="Revenue vs Expenses vs Profit"
     )
-    col2.plotly_chart(fig, use_container_width=True)
-    # st.plotly_chart(fig, use_container_width=True)
+    col2.plotly_chart(fig, use_container_width=True)    
+
+    # Reference Data Table
+    col3.markdown("While industry-specific data can vary, here are some general reference points from consulting, agency, and trade business benchmarks.")
+    
+    ref_data = {'Industry': ['Freelance/Consulting', 'Marketing/Creative Agencies', 'Trades (Plumbing, HVAC)', 'Coaches/Consultants'], 
+                'Target Net Profit per Billable Hour': ['$75–$150/hr', '$60–$120/hr', '$50–$100/hr', '$80–$200/hr']}
+    df_ref = pd.DataFrame(ref_data)
+    col3.table(df_ref)
 else:
     st.warning("Billable hours must be greater than 0 to calculate profit per hour.")
