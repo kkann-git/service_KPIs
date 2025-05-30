@@ -66,3 +66,13 @@ if billable_hours > 0:
     col3.markdown("PLEASE NOTE: While industry-specific data can vary, here are some general reference points from consulting, agency, and trade business benchmarks.")    
 else:
     st.warning("Billable hours must be greater than 0 to calculate profit per hour.")
+
+st.markdown("""
+    <div style="text-align: center; margin-top: 2em;">
+        <a href="https://www.buymeacoffee.com/kkann" target="_blank">
+            <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
+                 alt="Buy Me A Coffee" 
+                 style="height: 60px !important;width: 217px !important;">
+        </a>
+    </div>
+""", unsafe_allow_html=True)
