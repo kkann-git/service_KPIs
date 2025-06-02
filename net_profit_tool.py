@@ -8,6 +8,7 @@ st.set_page_config(page_title="Net Profit per Billable Hour", layout="wide")
 st.title("💰 Net Profit per Billable Hour Calculator")
 
 st.markdown("Use this tool to calculate your true profitability based on your time and expenses.")
+st.info("PLEASE NOTE: Entered data will only be stored in memory (RAM) only for the duration of the session and is deleted as soon as it is no longer needed—such as when the user uploads another file, clears the file uploader, or closes the browser tab. This data is not saved to disk or permanently stored in this app.")    
 
 # Input method
 upload = st.file_uploader("Upload a CSV file with your financial data", type="csv")
@@ -32,7 +33,6 @@ elif manual:
     billable_hours = st.number_input("Total Billable Hours", min_value=0.0, step=1.0)
 else:
     st.info("Upload a CSV or check the box to enter data manually. CSV file must include columns: Revenue, Expenses, Billable Hours.")
-    st.info("Entered data will only be stored in memory (RAM) only for the duration of the session and is deleted as soon as it is no longer needed—such as when the user uploads another file, clears the file uploader, or closes the browser tab. This data is not saved to disk or permanently stored in this app.")    
     st.stop()
 
 if billable_hours > 0:
@@ -61,7 +61,8 @@ if billable_hours > 0:
     ref_data = {'Industry': ['Freelance/Consulting', 'Marketing/Creative Agencies', 'Trades (Plumbing, HVAC)', 'Coaches/Consultants'], 
                 'Target Net Profit per Billable Hour': ['$75–$150/hr', '$60–$120/hr', '$50–$100/hr', '$80–$200/hr']}
     df_ref = pd.DataFrame(ref_data)
-    col3.table(df_ref)
+    df_ref.to_csv('industry_data.csv', index=False)
+    col3.table(df_ref)    
 
     col3.markdown("PLEASE NOTE: While industry-specific data can vary, here are some general reference points from consulting, agency, and trade business benchmarks.")    
 else:
